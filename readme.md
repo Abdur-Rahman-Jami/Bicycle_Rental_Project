@@ -9,7 +9,7 @@ Rodshi Jahin Prapty - 2012951642
 
 Sadia Sultana Mim - 2022257042
 
-Nafsi Omar Prokretyd - 2022326642 
+Nafsi Omar Prokrety - 2022326642 
 
 Abdur Rahman - 2131641642
 
