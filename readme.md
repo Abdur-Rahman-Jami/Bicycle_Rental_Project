@@ -1,4 +1,18 @@
-# Bicycle Rental System
+
+CSE327-PROJECT
+
+BICYCYCLE RENTAL SYSTEM
+
+Group Member:
+
+Rodshi Jahin Prapty - 2012951642
+
+Sadia Sultana Mim - 2022257042
+
+Nafsi Omar Prokretyd - 2022326642 
+
+Abdur Rahman - 2131641642
+
 
 A Django-based web application for managing bicycle rentals. This system allows users to rent bicycles, manage inventory, and handle rental transactions efficiently.
 
@@ -29,7 +43,7 @@ cd Bicycle-Rental-System
 ```bash
 # Windows
 python -m venv myenv
-myenv\Scripts\activate
+.\myenv\Scripts\activate
 
 # Linux/Mac
 python3 -m venv myenv
@@ -109,13 +123,6 @@ Bicycle-Rental-System/
 4. Push to the branch
 5. Create a Pull Request
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For support, please open an issue in the repository or contact the maintainers.
 
 ## Acknowledgments
 
