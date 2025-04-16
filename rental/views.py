@@ -4,7 +4,13 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import Bicycle, Rental
-from .patterns import RentalFacade, BicycleUnlockProxy, UserObserver, AdminObserver
+from .patterns import (
+    RentalFacade,
+    BicycleUnlockProxy,
+    UserObserver,
+    AdminObserver,
+    HourlyPricing,
+)
 from .forms import FeedbackForm
 from django.db.models import Sum, Avg, Count  # Import for aggregation
 from django.core.mail import send_mail
@@ -65,7 +71,9 @@ def bicycle_list(request):
 @login_required
 def payment_confirm(request, bicycle_id, duration):
     bicycle = Bicycle.objects.get(id=bicycle_id)
-    cost = duration * bicycle.price_per_hour
+    pricing_strategy = HourlyPricing()
+    cost = pricing_strategy.calculate_cost(bicycle, duration)
+
     if request.method == "POST":
         return redirect("rent_bicycle", bicycle_id=bicycle.id)
     return render(
@@ -88,8 +96,10 @@ def rent_bicycle(request, bicycle_id):
         user = request.user
 
         facade = RentalFacade()
+        
         facade.subject.attach(UserObserver(user))
         facade.subject.attach(AdminObserver())
+        
         rental = facade.rent_bicycle(user, bicycle, duration)
         proxy = BicycleUnlockProxy(bicycle, user, rental.cost)
         if proxy.unlock():

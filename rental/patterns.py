@@ -51,7 +51,7 @@ class BicycleSubject:
                 observer.payment_notification(rental)
 
 
-# Strategy Pattern (updated)
+# Strategy Pattern
 class PricingStrategy(ABC):
     @abstractmethod
     def calculate_cost(self, bicycle, duration):
@@ -60,12 +60,7 @@ class PricingStrategy(ABC):
 
 class HourlyPricing(PricingStrategy):
     def calculate_cost(self, bicycle, duration):
-        return bicycle.price_per_hour * duration  # Use bicycle-specific price
-
-
-class FlatPricing(PricingStrategy):
-    def calculate_cost(self, bicycle, duration):
-        return 10  # Flat $10 (could also be made configurable)
+        return bicycle.price_per_hour * duration
 
 
 # Singleton Pattern
@@ -113,7 +108,7 @@ class DummyPaymentProcessor:
         return transaction_id
 
 
-# Facade Pattern (updated)
+# Facade Pattern
 class RentalFacade:
     def __init__(self):
         self.pricing = HourlyPricing()
